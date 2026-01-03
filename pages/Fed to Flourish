@@ -1,0 +1,15 @@
+import streamlit as st
+import json
+
+# Load Bible JSON
+with open("bible_data.json", "r") as f:
+    bible_text = json.load(f)
+
+st.header("Read the Bible")
+
+# Select book & chapter
+book = st.selectbox("Select Book", list(bible_text.keys()))
+chapter = st.number_input("Chapter", 1, len(bible_text[book]), step=1)
+
+st.subheader(f"{book} {chapter}")
+st.write(bible_text[book][str(chapter)])
